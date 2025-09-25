@@ -26,16 +26,12 @@ int main(void) {
 
   int player_x = 100, player_y = 100;
   while (1) {
-        int val;
-        val = readkey();
+        
+        circlefill(screen, player_x, player_y, 5, makecol(255, 255, 255));
 
-        if ((val & 0xff) == 'w') {
-            player_x += 5;
-            allegro_message("You pressed 'w'\n");
+        player_y += 1;
 
-        }
-
-        circlefill(screen, player_x, player_y, 5, makecol(255, 0, 255));
+        circlefill(screen, player_x, player_y-6, 5, makecol(255, 0, 255));
     
         rest(16);  
   }
