@@ -126,7 +126,7 @@ void update_enemies() {
         if (enemies[i].active) {
             int direction = rand() % 2;
             enemies[i].y += 1;
-            if(direction){enemies[i].x += rand() % 8 - 1;}else{enemies[i].x -= rand() % 8 - 1;}    
+            if(direction){enemies[i].x += rand() % 4 - 1;}else{enemies[i].x -= rand() % 4 - 1;}    
             
             if (enemies[i].shoot_cooldown > 0) {
                 enemies[i].shoot_cooldown--;
