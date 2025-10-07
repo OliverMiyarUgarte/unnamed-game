@@ -8,14 +8,13 @@
 #define PLAYER_RADIUS 5
 #define MAX_BULLETS 10
 #define MAX_ENEMIES 5
-#define BULLET_COOLDOWN 5
 #define ENEMY_RADIUS 8
-#define BULLET_RADIUS 2
 #define ENEMY_SHOOT_COOLDOWN 90
 
 int player_x = 100, player_y = 100;
 int game_over = 0;
 int bullet_cooldown = 0; 
+
 
 #include "bullets.h"
 #include "enemies.h"
@@ -54,6 +53,19 @@ int main(void) {
    init_bullets();
    init_enemies();
 
+   //select player bullets (temp)
+   
+   selectbullet(0); // normal
+   selectbullet(0);
+   selectbullet(0);
+   selectbullet(1); // big
+   selectbullet(1);
+   selectbullet(1);
+   selectbullet(1);
+   selectbullet(2); // fast
+   selectbullet(2);
+   selectbullet(2); 
+   
 
    while (1) {
        if (game_over) {

@@ -5,7 +5,7 @@ void check_player_bullet_collision() {
            int dx = player_x - bullets[i].x;
            int dy = player_y - bullets[i].y;
            int distance_squared = dx * dx + dy * dy;
-           int collision_distance = (PLAYER_RADIUS + BULLET_RADIUS) * (PLAYER_RADIUS + BULLET_RADIUS);
+           int collision_distance = (PLAYER_RADIUS + bullets[i].radius) * (PLAYER_RADIUS + bullets[i].radius);
           
            if (distance_squared < collision_distance) {
                bullets[i].active = 0; 
@@ -42,7 +42,7 @@ void check_bullet_enemy_collisions() {
                    int dx = bullets[i].x - enemies[j].x;
                    int dy = bullets[i].y - enemies[j].y;
                    int distance_squared = dx * dx + dy * dy;
-                   int collision_distance = (BULLET_RADIUS + ENEMY_RADIUS) * (BULLET_RADIUS + ENEMY_RADIUS);
+                   int collision_distance = (bullets[i].radius + ENEMY_RADIUS) * (bullets[i].radius + ENEMY_RADIUS);
                    if (distance_squared < collision_distance) { 
                        bullets[i].active = 0;
                        enemies[j].health--;  
