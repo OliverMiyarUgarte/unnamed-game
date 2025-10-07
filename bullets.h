@@ -8,6 +8,7 @@ typedef struct {
    int speedy;
    int radius;
    int cooldown;
+   int damage;
 } Bullet;
 
 Bullet btypes[3];
@@ -34,16 +35,19 @@ void init_bullets() {
    btypes[0].speedy = 4; 
    btypes[0].radius = 3;
    btypes[0].cooldown = 5;
+   btypes[0].damage = 1;
 
    btypes[1].speedx = 0; 
    btypes[1].speedy = 2; 
    btypes[1].radius = 5;
    btypes[1].cooldown = 10;
+   btypes[1].damage = 2;
 
    btypes[2].speedx = 0;
    btypes[2].speedy = 7; 
    btypes[2].radius = 1;
    btypes[2].cooldown = 2; 
+   btypes[2].damage = 1;
 }
 
 void selectbullet(int i){
@@ -88,6 +92,7 @@ void shoot_bullet(int x, int y, int is_enemy_bullet) {
                bullets[i].speedy = btypes[rand_index].speedy;
                bullets[i].radius = btypes[rand_index].radius;
                bullets[i].cooldown = btypes[rand_index].cooldown;
+               bullets[i].damage = btypes[atual].damage;
            } else { // player bullet
                if (Vazia(&pbullets[0]) && Vazia(&pbullets[1])) { // no bullet selected
                     bullets[i].active = 0;
@@ -102,6 +107,7 @@ void shoot_bullet(int x, int y, int is_enemy_bullet) {
                     bullets[i].speedy = btypes[atual].speedy;
                     bullets[i].radius = btypes[atual].radius;
                     bullets[i].cooldown = btypes[atual].cooldown;
+                    bullets[i].damage = btypes[atual].damage;
                } else {
                    ativa = 1 - ativa; 
                    bullet_cooldown = reload_time;

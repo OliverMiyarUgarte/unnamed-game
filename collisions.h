@@ -45,7 +45,7 @@ void check_bullet_enemy_collisions() {
                    int collision_distance = (bullets[i].radius + ENEMY_RADIUS) * (bullets[i].radius + ENEMY_RADIUS);
                    if (distance_squared < collision_distance) { 
                        bullets[i].active = 0;
-                       enemies[j].health--;  
+                       enemies[j].health-=bullets[i].damage;  
                       
                        if (enemies[j].health <= 0) {
                            enemies[j].active = 0;
