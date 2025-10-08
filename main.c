@@ -19,7 +19,7 @@ int bullet_cooldown = 0;
 #include "bullets.h"
 #include "enemies.h"
 #include "collisions.h"
-
+#include "menu.h"
 
 int main(void) {
    if (allegro_init() != 0) {
@@ -91,10 +91,21 @@ int main(void) {
     }
 
     //playerBullet
-    BITMAP *playerBullet = load_bitmap("bullet1.bmp", NULL);
+    BITMAP *playerBullet1 = load_bitmap("bullet1.bmp", NULL);
+    BITMAP *playerBullet2 = load_bitmap("bullet2.bmp", NULL);
+    BITMAP *playerBullet3 = load_bitmap("bullet3.bmp", NULL);
 
-    if(!playerBullet){
-        allegro_message("Erro ao carregar playerBullet.bmp!");
+
+    if(!playerBullet1){
+        allegro_message("Erro ao carregar playerBullet1.bmp!");
+        return 1;
+    }
+    if(!playerBullet2){
+        allegro_message("Erro ao carregar playerBullet2.bmp!");
+        return 1;
+    }
+    if(!playerBullet3){
+        allegro_message("Erro ao carregar playerBullet3.bmp!");
         return 1;
     }
 
@@ -146,7 +157,7 @@ int main(void) {
        masked_blit(player, buffer, 0, 0, player_x, player_y, player->w, player->h);
 
        //Desenhando balas
-       draw_bullets(buffer, playerBullet, playerBullet);
+       draw_bullets(buffer, playerBullet1, playerBullet1, playerBullet2, playerBullet3);
 
        //Deseenhando inimigos
        draw_enemies(buffer, enemy);

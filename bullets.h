@@ -79,7 +79,7 @@ void shoot_bullet(int x, int y, int is_enemy_bullet) {
 
    for (int i = 0; i < MAX_BULLETS; i++) {
        if (!bullets[i].active) {
-           bullets[i].x = x;
+           bullets[i].x = x+10;
            bullets[i].y = y;
            bullets[i].active = 1;
            bullets[i].is_enemy_bullet = is_enemy_bullet;
@@ -87,6 +87,7 @@ void shoot_bullet(int x, int y, int is_enemy_bullet) {
            int deucerto = 1;
 
            if (is_enemy_bullet) {
+                bullets[i].x = x;
                int rand_index = rand() % 3;
                bullets[i].speedx = btypes[rand_index].speedx;
                bullets[i].speedy = btypes[rand_index].speedy;
@@ -152,13 +153,23 @@ void update_bullets() {
 }
 
 
-void draw_bullets(BITMAP* buffer) {
+void draw_bullets(BITMAP* buffer, BITMAP* enemy_bullet1, BITMAP* playerBullet1, BITMAP* playerBullet2, BITMAP* playerBullet3) {
    for (int i = 0; i < MAX_BULLETS; i++) {
        if (bullets[i].active) {
            if (bullets[i].is_enemy_bullet) {
                circlefill(buffer, bullets[i].x, bullets[i].y, bullets[i].radius, makecol(255, 50, 50));
+               //masked_blit(enemy_bullet, buffer, 0, 0, enemies[i].x, enemies[i].y, enemy->w, enemy->h);
            } else {
-               circlefill(buffer, bullets[i].x, bullets[i].y, bullets[i].radius, makecol(254, 242, 85));
+               //circlefill(buffer, bullets[i].x, bullets[i].y, BULLET_RADIUS, makecol(254, 242, 85));
+               if(bullets[i].radius == 3){
+                    masked_blit(playerBullet1, buffer, 0, 0, bullets[i].x, bullets[i].y, playerBullet1->w, playerBullet1->h);
+               }
+               if(bullets[i].radius == 5){
+                    masked_blit(playerBullet2, buffer, 0, 0, bullets[i].x, bullets[i].y, playerBullet2->w, playerBullet2->h);
+               }
+               if(bullets[i].radius == 1){
+                    masked_blit(playerBullet3, buffer, 0, 0, bullets[i].x, bullets[i].y, playerBullet3->w, playerBullet3->h);
+               }
            }
        }
    }

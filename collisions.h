@@ -61,10 +61,5 @@ void check_bullet_enemy_collisions() {
 void show_enemy_counter(BITMAP* buffer){
    for(int i = 0; i < MAX_ENEMIES; i++){
        textprintf_ex(buffer, font, 10, 10, makecol(0, 0, 0), -1, "Score: %d", enemy_counter);
-
-
-       if(enemy_counter == 25){
-           game_over = 1;
-       }
    }
 }
