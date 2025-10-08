@@ -13,7 +13,8 @@
 
 int player_x = 100, player_y = 100;
 int game_over = 0;
-int bullet_cooldown = 0; 
+int bullet_cooldown = 0;
+int enemy_counter = 0;
 
 
 #include "bullets.h"
