@@ -65,6 +65,43 @@ int main(void) {
    selectbullet(2); // fast
    selectbullet(2);
    selectbullet(2); 
+
+   //Avião
+    BITMAP *player = load_bitmap("player.bmp", NULL);
+
+    if(!player){
+        allegro_message("Erro ao carregar player.bmp!");
+        return 1;
+    }
+
+    //Background
+    BITMAP *fundo = load_bitmap("fundo.bmp", NULL);
+
+    if(!fundo){
+        allegro_message("Erro ao carregar fundo.bmp!");
+        return 1;
+    }
+
+    //Enemy
+    BITMAP *enemy = load_bitmap("enemy.bmp", NULL);
+
+    if(!enemy){
+        allegro_message("Erro ao carregar enemy.bmp!");
+        return 1;
+    }
+
+    //playerBullet
+    BITMAP *playerBullet = load_bitmap("bullet1.bmp", NULL);
+
+    if(!playerBullet){
+        allegro_message("Erro ao carregar playerBullet.bmp!");
+        return 1;
+    }
+
+    //Menu
+    draw_menu(buffer);
+    blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    readkey();
    
 
    while (1) {
@@ -77,8 +114,10 @@ int main(void) {
            continue;
        }
 
+    //Background
+       clear_to_color(buffer, makecol(0, 0, 0));
+       blit(fundo, buffer, 0, 0, 80, 0, fundo->w, fundo->h);
 
-       clear_to_color(buffer, makecol(3, 27, 117));
 
 
        if (key[KEY_UP] && player_y - PLAYER_RADIUS > 0) { player_y -= 4; }
@@ -90,7 +129,6 @@ int main(void) {
        if (key[KEY_ESC]) { break; }
 
 
-       //player_y += 1;
        if (player_y + PLAYER_RADIUS >= SCREEN_HEIGHT) {
            player_y = SCREEN_HEIGHT - PLAYER_RADIUS;
        }
@@ -104,11 +142,14 @@ int main(void) {
        check_player_enemy_collision();
 
 
-       circlefill(buffer, player_x, player_y, PLAYER_RADIUS, makecol(115, 245, 213));
+       //Desenehando avião
+       masked_blit(player, buffer, 0, 0, player_x, player_y, player->w, player->h);
 
+       //Desenhando balas
+       draw_bullets(buffer, playerBullet, playerBullet);
 
-       draw_bullets(buffer);
-       draw_enemies(buffer);
+       //Deseenhando inimigos
+       draw_enemies(buffer, enemy);
 
 
        rectfill(buffer, 0, 0, SCREEN_WIDTH / 4, SCREEN_HEIGHT, makecol(59, 68, 75));
