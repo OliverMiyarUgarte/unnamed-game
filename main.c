@@ -20,6 +20,7 @@ int enemy_counter = 0;
 #include "bullets.h"
 #include "enemies.h"
 #include "collisions.h"
+#include "menu.h"
 
 
 int main(void) {
