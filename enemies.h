@@ -63,9 +63,7 @@ void update_enemies() {
 void draw_enemies(BITMAP* buffer) {
    for (int i = 0; i < MAX_ENEMIES; i++) {
        if (enemies[i].active) {
-           circlefill(buffer, enemies[i].x, enemies[i].y, ENEMY_RADIUS, makecol(114, 12, 10));
-
-
+           masked_blit(enemy, buffer, 0, 0, enemies[i].x - 15, enemies[i].y, enemy->w, enemy->h);
            int health_bar_width = ENEMY_RADIUS * 2;
            int health_bar_height = 2;
            int health_bar_color = makecol(0, 255, 0); 
