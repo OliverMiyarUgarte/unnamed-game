@@ -152,13 +152,13 @@ void update_bullets() {
 }
 
 
-void draw_bullets(BITMAP* buffer) {
+void draw_bullets(BITMAP* buffer, BITMAP* enemy_bullet, BITMAP* playerBullet) {
    for (int i = 0; i < MAX_BULLETS; i++) {
        if (bullets[i].active) {
            if (bullets[i].is_enemy_bullet) {
-               circlefill(buffer, bullets[i].x, bullets[i].y, bullets[i].radius, makecol(255, 50, 50));
+               circlefill(buffer, bullets[i].x, bullets[i].y, BULLET_RADIUS, makecol(255, 50, 50));
            } else {
-               circlefill(buffer, bullets[i].x, bullets[i].y, bullets[i].radius, makecol(254, 242, 85));
+               masked_blit(playerBullet, buffer, 0, 0, bullets[i].x, bullets[i].y, playerBullet->w, playerBullet->h);
            }
        }
    }
